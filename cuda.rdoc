@@ -1,0 +1,5 @@
+= cuda
+
+Generate this with
+    cuda rdoc
+After you have described your command line interface
