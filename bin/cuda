@@ -49,11 +49,10 @@ command :start do |c|
   c.default_value Dir.pwd
   c.flag [:d,:dir]
 
+
   c.action do |global_options,options,args|
-    puts "Server starting in port #{options['port']}"
-    puts "Reading directory: #{options['dir']}"
-    puts "Global options => #{global_options.inspect}"
-    puts "Args => #{args.inspect}"
+    puts "Server starting in port #{options[:p]}"
+    puts "Directory: #{options[:dir]}"
   end
 end
 
