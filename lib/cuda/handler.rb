@@ -9,9 +9,13 @@ module Cuda
 
     def serve
       loop do
+        # run it in threads
         IO.select([@session], nil, nil, 6) or fail 'Connection timed out'
+
         request = Cuda::Request.new(receive)
+        puts "REQUEST: #{request.inspect}"
         response = Cuda::Response.new(request)
+        puts "RESPONSE"
         @session.puts response.serve
       end
     rescue

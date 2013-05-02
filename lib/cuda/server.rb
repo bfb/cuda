@@ -24,9 +24,9 @@ module Cuda
         session = server.accept
         puts "CONNECTION ACCEPTED"
 
-        #Thread.start(session) do |session|
+        Thread.start(session) do |session|
           Cuda::Handler.new(session).serve
-        # end
+        end
 
       end
 

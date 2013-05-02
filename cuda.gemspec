@@ -6,7 +6,9 @@ require 'cuda/server'
 require 'cuda/handler'
 require 'cuda/request'
 require 'cuda/response'
-require 'ostruct'
+require 'cuda/template'
+require 'cuda/mime'
+require 'date'
 
 Gem::Specification.new do |gem|
   gem.name          = "cuda"
