@@ -8,12 +8,13 @@ module Cuda
     end
 
     def serve
-      #loop do
+      loop do
+        IO.select([@session], nil, nil, 6) or fail 'Connection timed out'
         request = Cuda::Request.new(receive)
         response = Cuda::Response.new(request)
-
         @session.puts response.serve
-      #end
+      end
+    rescue
       @session.close
     end
 
