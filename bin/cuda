@@ -53,6 +53,8 @@ command :start do |c|
   c.action do |global_options,options,args|
     puts "Server starting in port #{options[:p]}"
     puts "Directory: #{options[:dir]}"
+    $dir = options[:dir]
+    Cuda::Server.new(options[:dir], options[:p])
   end
 end
 
