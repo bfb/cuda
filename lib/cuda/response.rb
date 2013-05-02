@@ -18,13 +18,16 @@ module Cuda
     def serve
       response = "HTTP/1.1 #{@status[:message]}\r\n"
 
-      @headers.each do |key, value|
-        response << "#{key}: #{value}\r\n"
-      end
+      # @headers.each do |key, value|
+      #   response << "#{key}: #{value}\r\n"
+      # end
 
       response << "Date: #{DateTime.now.httpdate}\r\n"
       response << "Server: Cuda Server - version 0.0.1\r\n"
+      response << "Connection: Keep-Alive\r\n"
+      response << "Content-Length: #{@body.length}\r\n"
       response << "Content-Type: text/html\r\n\r\n"
+
       response << @body
 
       response
@@ -41,7 +44,7 @@ module Cuda
           @body = File.new(relative_path).read
         else
           @status = Cuda::Server.errors[404]
-          @body = File.new("/Users/brunobohn/Projects/cuda/public/404.html").read
+          @body = File.new("./public/404.html").read
         end
       end
 
