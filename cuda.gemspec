@@ -7,7 +7,9 @@ require 'cuda/handler'
 require 'cuda/request'
 require 'cuda/response'
 require 'cuda/template'
+require 'cuda/client'
 require 'cuda/mime'
+require 'cuda/logger'
 require 'date'
 
 Gem::Specification.new do |gem|
@@ -27,5 +29,6 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency('rake')
   gem.add_development_dependency('rspec')
   gem.add_runtime_dependency('gli','2.5.6')
+  gem.add_runtime_dependency('httparty', '0.11.0')
 
 end

@@ -3,6 +3,7 @@ module Cuda
 
     def self.content_type(path)
       ext = File.extname(path)
+
       case ext
         when ".txt"
           "text/plain"
@@ -18,7 +19,7 @@ module Cuda
           "text/xml"
         when ".xsl"
           "text/xml"
-        else
+        when ".html" || ".htm"
           "text/html"
       end
     end

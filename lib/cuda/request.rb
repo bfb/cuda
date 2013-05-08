@@ -9,11 +9,14 @@ module Cuda
 
     def parse_headers(content)
       headers = {}
-      content.split("\r\n")[1..-1].each do |header|
-        key, value = header.split(":")
-        headers[key] = value
+      if content
+        content.split("\r\n")[1..-1].each do |header|
+          key, value = header.split(":")
+          headers[key] = value
+        end
       end
       headers
+
     end
 
   end

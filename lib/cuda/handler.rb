@@ -2,23 +2,30 @@ module Cuda
   class Handler
 
     def initialize(session)
-      puts "INITIALIZING HANDLER"
-      puts $http_version
       @session = session
     end
 
     def serve
       loop do
-        # run it in threads
         IO.select([@session], nil, nil, 6) or fail 'Connection timed out'
+        input = receive
 
-        request = Cuda::Request.new(receive)
-        puts "REQUEST: #{request.inspect}"
-        response = Cuda::Response.new(request)
-        puts "RESPONSE"
-        @session.puts response.serve
+        unless input.nil?
+          request = Cuda::Request.new(input)
+          if request.path
+            Cuda::Logger.print(request)
+
+            response = Cuda::Response.new(request)
+            Cuda::Logger.print(response)
+
+            @session.puts response.serve
+          end
+        end
       end
-    rescue
+    rescue Exception => e
+      # puts e.inspect
+      # puts e.backtrace
+
       @session.close
     end
 
@@ -26,9 +33,11 @@ module Cuda
       request = ""
       loop do
         get = @session.gets
-        break if get.chomp.empty?
+
+        break if get.nil? || get.chomp.empty?
         request << get
       end
+
       request
     end
 
