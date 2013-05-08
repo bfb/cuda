@@ -7,7 +7,7 @@ module Cuda
 
     def serve
       loop do
-        IO.select([@session], nil, nil, 6) or fail 'Connection timed out'
+        IO.select([@session], nil, nil, 4) or fail 'Connection timed out'
         input = receive
 
         unless input.nil?

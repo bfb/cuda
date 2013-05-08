@@ -29,6 +29,6 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency('rake')
   gem.add_development_dependency('rspec')
   gem.add_runtime_dependency('gli','2.5.6')
-  gem.add_runtime_dependency('httparty', '0.11.0')
+  gem.add_runtime_dependency('nokogiri', '1.5.9')
 
 end

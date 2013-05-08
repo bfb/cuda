@@ -1,6 +1,4 @@
-require 'httpclient'
 require 'nokogiri'
-
 
 module Cuda
   class Client
@@ -14,51 +12,36 @@ module Cuda
     def get
       @socket.puts "GET #{@uri.path} HTTP/1.1"
       @socket.puts ""
+
       loop do
         get = @socket.gets
 
         puts get
-        Nokogiri::HTML(get).css("img").each do |asset|
+        assets = []
+        assets << Nokogiri::HTML(get).css("img")
+        assets << Nokogiri::HTML(get).css("link")
+        assets << Nokogiri::HTML(get).css("script")
+
+        assets.flatten.each do |asset|
           Thread.new do
-            get_asset(asset.attributes['src'].value)
+            if asset.attributes.has_key?('src')
+              get_asset(asset.attributes['src'].value)
+            else
+              get_asset(asset.attributes['href'].value)
+            end
           end
-        end
+        end unless assets.flatten.empty?
+
         break if get.nil?
-        # if get =~ /finish/
-        #   @socket.close
-        #   break
-        # end
       end
 
     end
 
     def get_asset(asset)
+      asset = asset[0] == "/" ? asset[1..-1] : asset
       @socket.puts "GET /#{asset} HTTP/1.1"
       @socket.puts ""
     end
 
-
-    # def get_live(uri)
-    #   @uri = URI.parse(uri)
-
-    #   @client = HTTPClient.new
-    #   request = @client.get(uri) do |c|
-    #     assets = Nokogiri::HTML(c).css("img")
-    #     puts "assets: #{assets.inspect}"
-    #     assets.each do |asset|
-    #       Thread.new do
-    #         get_asset(asset.attributes['src'].value)
-    #       end
-    #     end
-    #   end
-    #   puts "RECEIVED: #{request}"
-
-    # end
-
-    # def get_asset(uri)
-    #   puts "get: #{@uri.host}:#{@uri.port}/#{uri}"
-    #   request = @client.get("#{@uri.host}:#{@uri.port}/#{uri}")
-    #   puts "ASSET RECEIVED: #{request.http_header.request_uri}"
-    # end
   end
 end
