@@ -16,16 +16,12 @@ program_desc 'Cuda is a server and client that uses socket to communication. Cud
 version Cuda::VERSION
 
 desc 'Request a file to the server'
-arg_name 'uri'
+arg_name 'url'
 command :get do |c|
 
-  c.desc 'URL'
-  c.arg_name 'http://localhost:3000/index.html'
-  c.default_value 'http://localhost:3000/index.html'
-  c.flag [:u,:url]
-
   c.action do |global_options,options,args|
-    Cuda::Client.new(options[:url])
+    puts "Requesting: #{args[0]}"
+    Cuda::Client.new(args[0])
   end
 end
 
@@ -71,7 +67,6 @@ on_error do |exception|
   # return false to skip default error handling
   puts exception.inspect
   puts exception.backtrace
-  puts STDERR
   true
 end
 
