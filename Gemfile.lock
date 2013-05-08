@@ -26,6 +26,5 @@ PLATFORMS
 
 DEPENDENCIES
   cuda!
-  nokogiri
   rake
   rspec

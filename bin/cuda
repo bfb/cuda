@@ -11,7 +11,7 @@ end
 
 include GLI::App
 
-program_desc 'Cuda is a server and client that uses socket to communication. Cuda client allows you to request a html file to the server and it will parse and retrieve all assets asynchronously.'
+program_desc 'Cuda is a static server that uses socket to serve files under http protocol.'
 
 version Cuda::VERSION
 
@@ -25,7 +25,7 @@ command :get do |c|
   end
 end
 
-desc 'Start the server.'
+desc 'Start the server'
 command :start do |c|
 
   c.desc 'Port to the server start'

@@ -8,9 +8,13 @@ Install the gem:
 
     $ gem install cuda
 
-After installing you have Cuda command line commands to use.
+After installing you have the Cuda commands to use.
 
 ## How to use
+
+To see all instructions you can use the `help` command.
+
+    $ cuda --help
 
 Start the Cuda server like the command bellow:
 
@@ -22,4 +26,4 @@ To get a file to the server use the command `get`:
 
     $ cuda get http://0.0.0.0:5000/file_name.html
 
-It will get the file_name.html to the server and parse the file to retrieve all assets asynchronously.
+It will get the file_name.html and parse the file to retrieve all assets asynchronously.

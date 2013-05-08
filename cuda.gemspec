@@ -10,6 +10,7 @@ require 'cuda/template'
 require 'cuda/client'
 require 'cuda/mime'
 require 'cuda/logger'
+require 'socket'
 require 'date'
 
 Gem::Specification.new do |gem|
@@ -17,8 +18,8 @@ Gem::Specification.new do |gem|
   gem.version       = Cuda::VERSION
   gem.authors       = ["Bruno"]
   gem.email         = ["b.fbohn@gmail.com"]
-  gem.description   = %q{Cuda - simple client and server}
-  gem.summary       = %q{Cuda - simple client and server}
+  gem.description   = %q{Cuda - simple static server}
+  gem.summary       = %q{Cuda - simple static server}
   gem.homepage      = ""
 
   gem.files         = `git ls-files`.split($/)
