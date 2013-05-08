@@ -1,6 +1,6 @@
 # Cuda
 
-Cuda is a server and client that uses socket to communication. Cuda client allows you to request a html file to the server and it will parse and retrieve all assets asynchronously.
+Cuda is a static server that uses socket to serve files under http protocol.
 
 ## Installation
 
@@ -18,12 +18,8 @@ Start the Cuda server like the command bellow:
 
 The command above starts the server in the port 5000 and reads the files in the /path/other/ directory.
 
-To list all html files in the directory use the command `list`:
+To get a file to the server use the command `get`:
 
-    $ cuda list
-
-To get a html file to the server use the command `get`:
-
-    $ cuda get file_name.html
+    $ cuda get http://0.0.0.0:5000/file_name.html
 
 It will get the file_name.html to the server and parse the file to retrieve all assets asynchronously.
