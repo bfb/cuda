@@ -9,7 +9,7 @@
     ul li { list-style: none; text-align: left; }
     ul li a { color: #333; display: block; padding: 10px; font-size: 14px; border-bottom: 1px solid #CCC; text-decoration: none; background: #EEE; }
     ul li a:hover { background: #FFF;}
-    .info { font-size: 12px; text-shadow: 1px 1px 1px #FFF;}
+    .info { font-size: 12px; }
     .back { text-align: left; margin-left: 20px; }
     .back a { padding: 8px; background: #333; color: #FFF; border-radius: 6px; margin-top: 10px; text-decoration: none; font-size: 14px; }
     .back a:hover { background: #888; }
@@ -21,7 +21,7 @@
         <p><%= directory %></p>
         <ul>
           <% directories.each_with_index do |d,i| %>
-          <li><a href="<%= d %>"><%= d %></a></li>
+          <li><a href="<%= "#{directory[1..-1]}/#{d}" %>"><%= d %></a></li>
           <% end %>
         </ul>
         <div class="back">
